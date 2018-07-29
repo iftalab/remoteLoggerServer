@@ -1,4 +1,4 @@
 {
-    "mongoUser" : "ifta",
-    "mongoPass" : "123"
+    "mongoUser" : "USER",
+    "mongoPass" : "PASS"
 }
