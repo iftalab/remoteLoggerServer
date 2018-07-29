@@ -16,23 +16,6 @@ router.get('/', function (req, res, next) {
         });
 });
 
-//get one
-router.get('/:logId', function (req, res, next) {
-    const id = req.params.logId;
-    Log.findById(id)
-        .exec()
-        .then(result => {
-            if (result) {
-                res.status(200).json(result);
-            } else {
-                res.status(404).json({ 'result': 'No valid object found for given ID' });
-            }
-
-        }).catch(err => {
-            res.status(500).json({ error: err })
-        });
-});
-
 //save
 router.post('/', function (req, res, next) {
     const log = new Log({
@@ -47,22 +30,6 @@ router.post('/', function (req, res, next) {
             res.status(201).json({message:"Log created"})
         }).catch(err => {
             res.status(500).json({ error: err })
-        });
-});
-//delete
-router.delete('/:logId', function (req, res, next) {
-    const id = req.params.logId;
-    Log.findOneAndRemove({ _id: id })
-        .exec()
-        .then(result => {
-            if (result) {
-                res.status(200).json(result);
-            } else {
-                res.status(404).json({ message: "Object seems already deleted" });
-            }
-        })
-        .catch(err => {
-            res.status(500).json({ error: err });
         });
 });
 
