@@ -44,28 +44,11 @@ router.post('/', function (req, res, next) {
     });
     log.save()
         .then(result => {
-            res.status(201).json(result)
+            res.status(201).json({message:"Log created"})
         }).catch(err => {
             res.status(500).json({ error: err })
         });
 });
-
-//update
-router.patch('/:logId', function (req, res, next) {
-    const id = req.params.logId;
-    const updateOps = {}
-    for (const key of Object.keys(req.body)) {
-        updateOps[key] = req.body[key]
-    }
-    Log.update({_id : id},updateOps)
-    .exec()
-    .then(result => {
-        res.status(200).json(result)
-    }).catch(err => {
-        res.status(500).json({ error: err })
-    });
-});
-
 //delete
 router.delete('/:logId', function (req, res, next) {
     const id = req.params.logId;
